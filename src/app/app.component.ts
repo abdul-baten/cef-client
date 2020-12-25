@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.component.html'
 })
-export class AppComponent {
-  title = 'cef-client';
-}
+export class AppComponent {}

@@ -1,1 +1,170 @@
-/* You can add global styles to this file, and also import other style files */
+@charset "UTF-8";
+:root {
+  --surface-a: #ffffff;
+  --surface-b: #fafafa;
+  --surface-c: rgba(0, 0, 0, 0.04);
+  --surface-d: rgba(0, 0, 0, 0.12);
+  --surface-e: rgba(228, 230, 232, 0.5);
+
+  --primary-color-text: #333333;
+  --secondary-color-text: #88929e;
+  --success-color-text: #04d98b;
+  --danger-color-text: #f06464;
+
+  --primary-color: #0057ff;
+  --success-color: #04d98b;
+  --danger-color: #f06464;
+
+  --primary-color-shadow-1: rgba(0, 87, 255, 0.04);
+  --primary-color-shadow-2: rgba(0, 87, 255, 0.06);
+  --primary-color-shadow-3: rgba(0, 87, 255, 0.08);
+  --primary-color-shadow-4: rgba(0, 87, 255, 0.1);
+  --primary-color-shadow-5: rgba(0, 87, 255, 0.12);
+  --secondary-color-shadow-1: rgba(0, 0, 0, 0.04);
+  --secondary-color-shadow-2: rgba(0, 0, 0, 0.06);
+  --secondary-color-shadow-3: rgba(0, 0, 0, 0.08);
+  --secondary-color-shadow-4: rgba(0, 0, 0, 0.1);
+  --secondary-color-shadow-5: rgba(0, 0, 0, 0.12);
+  --primary-border-radius: 4px;
+
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+
+  --box-shadow: 0 4px 8px var(--secondary-color-shadow-1);
+  --box-shadow-hover: 0 0 40px var(--secondary-color-shadow-5);
+}
+
+@font-face {
+  font-family: Roboto;
+  font-weight: 400;
+  font-style: normal;
+  src: local('Roboto'), local('Roboto-Regular'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-regular.woff2) format('woff2'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-regular.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: Roboto;
+  font-weight: 500;
+  font-style: normal;
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-500.woff2) format('woff2'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-500.woff) format('woff');
+  font-display: swap;
+}
+@font-face {
+  font-family: Roboto;
+  font-weight: 700;
+  font-style: normal;
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-700.woff2) format('woff2'),
+    url(/assets/fonts/roboto/roboto-v20-latin-ext_latin-700.woff) format('woff');
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+}
+body,
+html {
+  height: 100%;
+  color: var(--text-color);
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  user-select: none;
+  scroll-behavior: smooth;
+}
+body {
+  overflow-x: hidden;
+  margin: 0;
+  font-family: var(--font-family);
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+a {
+  color: var(--secondary-color-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style-type: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: 500;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 1.75rem;
+}
+h1.b-intro-header {
+  font-size: 3rem;
+  font-weight: 600;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+h4 {
+  font-size: 1.125rem;
+}
+h5 {
+  font-size: 0.995rem;
+}
+h6 {
+  font-size: 0.925rem;
+}
+p {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+small {
+  color: var(--secondary-color-text);
+  font-size: 0.725rem;
+  font-weight: 500;
+}
+
+.b-h-full {
+  height: 100%;
+}
+
+header {
+  height: 70px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px var(--secondary-color-shadow-4),
+    0 3px 14px 2px var(--secondary-color-shadow-5);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: var(--surface-a);
+
+  img {
+    height: 30px;
+    width: auto;
+  }
+}

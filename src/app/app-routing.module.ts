@@ -1,10 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    loadChildren: () => import('./routes/home/home.module').then((module) => module.HomeModule),
+    path: ''
+  }
+];
 
 @NgModule({
   exports: [RouterModule],
-  imports: [RouterModule.forRoot(routes)]
+  imports: [
+    RouterModule.forRoot(routes, {
+      anchorScrolling: 'enabled',
+      enableTracing: false,
+      initialNavigation: 'enabled',
+      onSameUrlNavigation: 'ignore',
+      paramsInheritanceStrategy: 'emptyOnly',
+      relativeLinkResolution: 'corrected',
+      scrollOffset: [0, 0],
+      scrollPositionRestoration: 'top',
+      urlUpdateStrategy: 'eager',
+      useHash: false
+    })
+  ]
 })
 export class AppRoutingModule {}
