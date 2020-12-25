@@ -1,3 +1,9 @@
-<app-header></app-header>
+<p-divider align="left" type="dashed">
+  <h2>Products</h2>
+</p-divider>
 
-<p>home works!</p>
+<div class="p-grid">
+  <div *ngFor="let productItem of productItems" class="p-col-12 p-md-6 p-lg-4">
+    <app-product-list [productItem]="productItem"></app-product-list>
+  </div>
+</div>

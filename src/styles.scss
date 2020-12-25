@@ -6,12 +6,12 @@
   --surface-d: rgba(0, 0, 0, 0.12);
   --surface-e: rgba(228, 230, 232, 0.5);
 
-  --primary-color-text: #333333;
-  --secondary-color-text: #88929e;
+  --primary-color-text: #3f51b5;
+  --secondary-color-text: #333333;
   --success-color-text: #04d98b;
   --danger-color-text: #f06464;
 
-  --primary-color: #0057ff;
+  --primary-color: #3f51b5;
   --success-color: #04d98b;
   --danger-color: #f06464;
 
@@ -31,7 +31,7 @@
     'Droid Sans', 'Helvetica Neue', sans-serif;
 
   --box-shadow: 0 4px 8px var(--secondary-color-shadow-1);
-  --box-shadow-hover: 0 0 40px var(--secondary-color-shadow-5);
+  --box-shadow-hover: 0 0 20px var(--secondary-color-shadow-5);
 }
 
 @font-face {
@@ -80,6 +80,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  background-color: var(--surface-b);
   overflow-x: hidden;
   margin: 0;
   font-family: var(--font-family);
@@ -166,5 +167,56 @@ header {
   img {
     height: 30px;
     width: auto;
+  }
+}
+
+section.container {
+  margin: 100px auto 0;
+  width: 100%;
+  max-width: 90%;
+}
+
+.p-divider {
+  .p-divider-content {
+    background-color: var(--surface-b);
+  }
+}
+
+.p-card {
+  border: 1px solid var(--surface-e);
+  border-radius: var(--primary-border-radius);
+  background: var(--surface-a);
+  box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04), inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
+  color: var(--secondary-color-text);
+
+  &:hover {
+    box-shadow: var(--box-shadow-hover);
+    color: var(--primary-color-text);
+
+    .p-card-details-icon {
+      visibility: visible;
+    }
+  }
+
+  .p-card-body {
+    padding: 1.25rem;
+  }
+
+  .p-card-content {
+    padding: 0;
+  }
+
+  .p-card-title {
+    font-size: 1rem;
+  }
+
+  .p-card-details-icon {
+    visibility: hidden;
+  }
+}
+
+.p-tooltip {
+  .p-tooltip-text {
+    font-size: 0.75rem;
   }
 }
