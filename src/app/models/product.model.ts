@@ -1,4 +1,4 @@
-interface IVariant {
+export interface IVariant {
   color: string;
   quantity: number;
   size: string[];
@@ -10,4 +10,9 @@ export interface IProduct {
   name: string;
   price: string;
   variants: IVariant[];
+}
+
+export interface IDropdown {
+  name: string;
+  value: string;
 }
