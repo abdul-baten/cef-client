@@ -1,0 +1,46 @@
+<form [formGroup]="signupForm" novalidate>
+  <div class="p-fluid">
+    <div class="p-field p-col-12">
+      <p-divider align="center" type="dashed">
+        <h2>Sign up</h2>
+      </p-divider>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="fullname">Full Name</label>
+      <input pInputText placeholder="your name" type="text" autocomplete="new-password" formControlName="fullname"
+        id="fullname" />
+      <ng-container
+        *ngIf="signupForm.controls.fullname.dirty && signupForm.controls.fullname.invalid; else name_is_valid">
+        <small class="b-text-danger" id="full-name-help">{{ signupForm.controls.fullname.getError('fullname') }}</small>
+      </ng-container>
+      <ng-template #name_is_valid>
+        <small>Letters, numbers & spaces only.</small>
+      </ng-template>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="email">Email Address</label>
+      <input pInputText placeholder="your.name@email.com" type="email" autocomplete="new-password" autofocus
+        formControlName="email" id="email" />
+      <ng-container *ngIf="signupForm.controls.email.dirty && signupForm.controls.email.invalid">
+        <small class="p-invalid" id="email-help">{{ signupForm.controls.email.getError('email') }}</small>
+      </ng-container>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="password">Password</label>
+      <span class="p-input-icon-right">
+        <i class="pi" [ngClass]="{ 'pi-eye': is_password_visible, 'pi-eye-slash': !is_password_visible }"
+          (click)="is_password_visible = !is_password_visible"></i>
+        <input pInputText placeholder="••••••••••••••••" [type]="is_password_visible ? 'text' : 'password'"
+          autocomplete="new-password" formControlName="password" id="password" />
+      </span>
+      <ng-container *ngIf="signupForm.controls.password.dirty && signupForm.controls.password.invalid">
+        <small class="p-invalid" id="password-help">{{ signupForm.controls.password.getError('password')
+          }}</small>
+      </ng-container>
+    </div>
+    <div class="p-field p-col-12">
+      <button [disabled]="signupForm.invalid || form_clicked" (click)="login()" class="p-button-lg"
+        [label]="form_clicked ? 'Signing up' : 'Sign up'" pButton type="button"></button>
+    </div>
+  </div>
+</form>
