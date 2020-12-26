@@ -517,7 +517,13 @@
             "enforceForIndexOf": true
           }
         ],
-        "valid-jsdoc": "error",
+        "valid-jsdoc": [
+          "error",
+          {
+            "requireParamType": false,
+            "requireReturnType": false
+          }
+        ],
         "valid-typeof": "error",
         "vars-on-top": "error",
         "wrap-iife": [

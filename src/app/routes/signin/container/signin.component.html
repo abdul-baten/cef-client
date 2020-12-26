@@ -1,0 +1,34 @@
+<form [formGroup]="signinForm" novalidate>
+  <div class="p-fluid">
+    <div class="p-field p-col-12">
+      <p-divider align="center" type="dashed">
+        <h2>Sign in</h2>
+      </p-divider>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="email">Email Address</label>
+      <input pInputText placeholder="your.name@email.com" type="email" autocomplete="new-password" autofocus
+        formControlName="email" id="email" />
+      <ng-container *ngIf="signinForm.controls.email.dirty && signinForm.controls.email.invalid">
+        <small class="p-invalid" id="email-help">{{ signinForm.controls.email.getError('email') }}</small>
+      </ng-container>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="password">Password</label>
+      <span class="p-input-icon-right">
+        <i class="pi" [ngClass]="{ 'pi-eye': is_password_visible, 'pi-eye-slash': !is_password_visible }"
+          (click)="is_password_visible = !is_password_visible"></i>
+        <input pInputText placeholder="••••••••••••••••" [type]="is_password_visible ? 'text' : 'password'"
+          autocomplete="new-password" formControlName="password" id="password" />
+      </span>
+      <ng-container *ngIf="signinForm.controls.password.dirty && signinForm.controls.password.invalid">
+        <small class="p-invalid" id="password-help">{{ signinForm.controls.password.getError('password')
+          }}</small>
+      </ng-container>
+    </div>
+    <div class="p-field p-col-12">
+      <button [disabled]="signinForm.invalid || form_clicked" (click)="login()" class="p-button-lg"
+        [label]="form_clicked ? 'Signing in' : 'Sign in'" pButton type="button"></button>
+    </div>
+  </div>
+</form>
