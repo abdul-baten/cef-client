@@ -1,0 +1,43 @@
+<p-panel styleClass="p-mb-3">
+  <p-header>
+    <div class="p-d-flex p-jc-between">
+      <h3>Product Name</h3>
+      <h2 class="p-text-bold">{{'20' | currency }}</h2>
+    </div>
+  </p-header>
+  <p-divider></p-divider>
+  <form novalidate [formGroup]="detailsForm">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-grid p-col-12 p-lg-4">
+        <label for="color" class="p-col-4 p-mb-0">Color</label>
+        <div class="p-col-8">
+          <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
+            decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
+            incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
+            buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+          </p-inputNumber>
+        </div>
+      </div>
+      <div class="p-field p-grid p-col-12 p-lg-4">
+        <label for="color" class="p-col-4 p-mb-0">Size</label>
+        <div class="p-col-8">
+          <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
+            decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
+            incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
+            buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+          </p-inputNumber>
+        </div>
+      </div>
+      <div class="p-field p-grid p-col-12 p-lg-4">
+        <label for="color" class="p-col-4 p-mb-0">Quantity</label>
+        <div class="p-col-8">
+          <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
+            decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
+            incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
+            buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+          </p-inputNumber>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-panel>
