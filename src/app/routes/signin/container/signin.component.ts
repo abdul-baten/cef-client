@@ -1,8 +1,10 @@
 import Joi from 'joi';
 import { CommonValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
+import { finalize } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RegexPatterns } from 'src/app/core/constant';
+import { SigninFacade } from '../facade/signin.facade';
 
 @Component({
   selector: 'app-signin',
@@ -27,8 +29,7 @@ export class SigninComponent {
       'string.empty': 'Email address cannot be empty.'
     });
 
-  private passwordValidationRule = Joi.string().
-    regex(RegexPatterns.PASSWORD).
+  private passwordValidationRule = Joi.string().regex(RegexPatterns.PASSWORD).
     required().
     messages({
       'string.base': 'Password should be of type text.',
@@ -36,7 +37,7 @@ export class SigninComponent {
       'string.pattern.base': 'Password should be minimum 8 characters long with a mix of letters, numbers & symbols.'
     });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private facade: SigninFacade, private formBuilder: FormBuilder) {
     this.signinForm = this.buildForm();
   }
 
@@ -57,5 +58,18 @@ export class SigninComponent {
 
   public login(): void {
     this.form_clicked = true;
+    const { email, password } = this.signinForm.value;
+
+    this.facade.
+      loginUser(email, password).
+      pipe(finalize(() => {
+        this.signinForm.reset();
+        this.form_clicked = false;
+      })).
+      subscribe(() => this.facade.navigateToDashboard());
+  }
+
+  public navigate(route: string): void {
+    this.facade.navigate(route);
   }
 }

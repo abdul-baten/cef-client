@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SigninComponent } from './container/signin.component';
+import { SigninFacade } from './facade/signin.facade';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [SigninComponent],
-  imports: [ButtonModule, CommonModule, DividerModule, FormsModule, InputTextModule, ReactiveFormsModule, RouterModule.forChild(routes)]
+  imports: [ButtonModule, CommonModule, DividerModule, FormsModule, InputTextModule, ReactiveFormsModule, RouterModule.forChild(routes)],
+  providers: [SigninFacade]
 })
 export class SigninModule { }
