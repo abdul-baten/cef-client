@@ -4,10 +4,16 @@
 
     <div class="b-h-full p-d-flex p-ai-center p-jc-between">
       <i class="pi pi-bell p-mr-4 p-text-secondary" style="font-size: 1.5rem;" pBadge value="0"></i>
-      <button pButton type="button" label="Sign in" class="p-button-text p-button-plain p-mx-2"
-        (click)="navigate('signin')"></button>
-      <button pButton type="button" label="Sign up" class="p-button-primary" (click)="navigate('signup')"></button>
-      <button pButton type="button" label="Sign out" class="p-ml-2"></button>
+
+      <ng-template [ngIf]="!(isLoggedIn | async)" [ngIfElse]="loggedOut">
+        <button pButton type="button" label="Sign in" class="p-button-text p-button-plain p-mx-2"
+          (click)="navigate('signin')"></button>
+        <button pButton type="button" label="Sign up" class="p-button-primary" (click)="navigate('signup')"></button>
+      </ng-template>
+
+      <ng-template #loggedOut>
+        <button pButton type="button" label="Sign out" class="p-ml-2"></button>
+      </ng-template>
     </div>
   </div>
 </header>
