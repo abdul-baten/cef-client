@@ -27,4 +27,15 @@ export class AuthService {
       password
     });
   }
+
+  register(user_info: Partial<IAccount>): Observable<Partial<IAccount>> {
+    const { fullname, email, password: user_password } = user_info;
+    const password = this.getPasswordHash(user_password as string);
+
+    return this.httpService.post<Partial<IAccount>>('register', {
+      email,
+      fullname,
+      password
+    });
+  }
 }

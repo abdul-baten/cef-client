@@ -12,35 +12,37 @@ export class NotificationService {
       this.messageService.add({
         severity: 'success',
         summary
+
       });
     }
   }
 
-  showInfo(message: string): void {
-    if (message) {
+  showInfo(detail: string): void {
+    if (detail) {
       this.messageService.add({
-        detail: message,
+        detail,
         severity: 'info',
         summary: 'Yay!'
       });
     }
   }
 
-  showWarn(message: string): void {
-    if (message) {
+  showWarn(detail: string): void {
+    if (detail) {
       this.messageService.add({
-        detail: message,
+        detail,
         severity: 'warn',
         summary: 'Yay!'
       });
     }
   }
 
-  showError(summary: string): void {
-    if (summary) {
+  showError(detail: string): void {
+    if (detail) {
       this.messageService.add({
+        detail,
         severity: 'error',
-        summary
+        summary: 'Error'
       });
     }
   }

@@ -39,8 +39,8 @@
       </ng-container>
     </div>
     <div class="p-field p-col-12">
-      <button [disabled]="signupForm.invalid || form_clicked" (click)="login()" class="p-button-lg"
-        [label]="form_clicked ? 'Signing up' : 'Sign up'" pButton type="button"></button>
+      <button [disabled]="signupForm.invalid" (click)="register()" class="p-button-lg" label="Sign up" pButton
+        type="button"></button>
     </div>
   </div>
 </form>

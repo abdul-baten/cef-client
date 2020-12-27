@@ -2,7 +2,10 @@ import Joi from 'joi';
 import { CommonValidator } from 'src/app/core/validation';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { noop } from 'rxjs';
 import { RegexPatterns } from 'src/app/core/constant';
+import { SignupFacade } from '../facade/signup.facade';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-signup',
@@ -45,7 +48,7 @@ export class SignupComponent {
       'string.pattern.base': 'Password should be minimum 8 characters long with a mix of letters, numbers & symbols.'
     });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private readonly facade: SignupFacade, private readonly formBuilder: FormBuilder) {
     this.signupForm = this.buildForm();
   }
 
@@ -65,7 +68,16 @@ export class SignupComponent {
     });
   }
 
-  public login(): void {
-    this.form_clicked = true;
+  public register(): void {
+    if (this.signupForm.valid) {
+      this.form_clicked = true;
+      this.facade.
+        registerUser(this.signupForm.value).
+        pipe(tap(() => {
+          this.facade.navigate('/signin');
+          this.signupForm.reset();
+        })).
+        subscribe(noop);
+    }
   }
 }
