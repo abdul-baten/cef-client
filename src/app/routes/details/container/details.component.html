@@ -2,7 +2,7 @@
   <h2>Product Details</h2>
 </p-divider>
 
-<ng-container *ngIf="(product | async) as item" class="p-grid">
+<ng-container *ngIf="product | async as item; else noProductFound" class="p-grid">
   <div class="p-col-12 p-md-12 p-lg-8 p-lg-offset-2">
     <p-panel [header]="item.name">
       <div class="card">
@@ -37,7 +37,7 @@
               <label for="quantity" class="p-col-3 p-lg-2">Quantity</label>
               <div class="p-col-9 p-md-4">
                 <p-inputNumber mode="decimal" [step]="1" [min]="1"
-                  [max]="item.variants | quantity:this.detailsForm.value.color"
+                  [max]="item!.variants | quantity:this.detailsForm.value.color"
                   decrementButtonClass="p-button-plain p-button-text" decrementButtonIcon="pi pi-minus"
                   incrementButtonClass="p-button-plain p-button-text" incrementButtonIcon="pi pi-plus"
                   inputId="quantity" spinnerMode="horizontal" [showButtons]="true" buttonLayout="horizontal"
@@ -57,3 +57,7 @@
     </p-panel>
   </div>
 </ng-container>
+
+<ng-template #noProductFound>
+  <app-empty></app-empty>
+</ng-template>

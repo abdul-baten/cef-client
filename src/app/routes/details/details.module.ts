@@ -5,6 +5,7 @@ import { DetailsComponent } from './container/details.component';
 import { DetailsFacade } from './facade/details.facade';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
+import { EmptyModule } from 'src/app/shared/empty/empty.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { NgModule } from '@angular/core';
@@ -26,6 +27,7 @@ const routes: Routes = [
     CommonModule,
     DividerModule,
     DropdownModule,
+    EmptyModule,
     FormsModule,
     InputNumberModule,
     PanelModule,

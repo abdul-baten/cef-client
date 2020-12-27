@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
+import { EmptyModule } from 'src/app/shared/empty/empty.module';
 import { HeaderModule } from 'src/app/shared/header/header.module';
 import { HomeComponent } from './container/home.component';
 import { HomeFacade } from './facade/home.facade';
@@ -19,6 +20,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     DividerModule,
+    EmptyModule,
     HeaderModule,
     ProductListModule,
     RouterModule.forChild(routes)
