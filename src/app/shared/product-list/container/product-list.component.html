@@ -3,7 +3,7 @@
     <div class="p-d-flex p-ai-center p-jc-between">
       <h5 class="p-text-bold">{{productItem.name!}}</h5>
       <div class="p-d-flex p-ai-center p-jc-between">
-        <button pButton pTooltip="Details" tooltipPosition="bottom"
+        <button (click)="navigate(productItem.id!)" pButton pTooltip="Details" tooltipPosition="bottom"
           class="p-card-details-icon p-button-rounded p-button-sm p-button-plain p-button-text"
           icon="pi pi-chevron-right"></button>
         <button pTooltip="Add to Cart" tooltipPosition="bottom" pButton

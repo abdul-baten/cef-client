@@ -1,7 +1,10 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component } from '@angular/core';
+import { DetailsFacade } from '../facade/details.facade';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IDropdown } from 'src/app/models';
+import { IDropdown, IProduct } from 'src/app/models';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
@@ -9,15 +12,18 @@ import { IDropdown } from 'src/app/models';
   templateUrl: './details.component.html'
 })
 export class DetailsComponent {
+  public product: Observable<IProduct>;
   public color: IDropdown[];
   public detailsForm: FormGroup;
   public formClicked = false;
   public size: IDropdown[];
 
-  constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
-    this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
-      console.error(param.get('id'));
-    });
+  constructor(private activatedRoute: ActivatedRoute, private readonly facade: DetailsFacade, private formBuilder: FormBuilder) {
+    this.product = this.activatedRoute.paramMap.pipe(switchMap((param: ParamMap) => {
+      const id = param.get('id');
+
+      return this.facade.getProductById(Number(id) as number);
+    }));
 
     this.detailsForm = this.buildDetailsForm();
 

@@ -1,6 +1,8 @@
 import { ButtonModule } from 'primeng/button';
+import { ColorPipeModule, QuantityPipeModule, SizePipeModule } from 'src/app/core/pipe';
 import { CommonModule } from '@angular/common';
 import { DetailsComponent } from './container/details.component';
+import { DetailsFacade } from './facade/details.facade';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -20,14 +22,18 @@ const routes: Routes = [
   declarations: [DetailsComponent],
   imports: [
     ButtonModule,
+    ColorPipeModule,
     CommonModule,
     DividerModule,
     DropdownModule,
     FormsModule,
     InputNumberModule,
     PanelModule,
+    QuantityPipeModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
-  ]
+    RouterModule.forChild(routes),
+    SizePipeModule
+  ],
+  providers: [DetailsFacade]
 })
 export class DetailsModule { }

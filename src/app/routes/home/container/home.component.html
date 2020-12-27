@@ -3,7 +3,7 @@
 </p-divider>
 
 <div class="p-grid">
-  <div *ngFor="let productItem of productItems" class="p-col-12 p-md-6 p-lg-4">
-    <app-product-list [productItem]="productItem"></app-product-list>
+  <div *ngFor="let productItem of productItems | async" class="p-col-12 p-md-6 p-lg-4">
+    <app-product-list [productItem]="productItem" (clicked)="navigate($event)"></app-product-list>
   </div>
 </div>

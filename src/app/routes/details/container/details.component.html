@@ -2,9 +2,9 @@
   <h2>Product Details</h2>
 </p-divider>
 
-<div class="p-grid">
+<ng-container *ngIf="(product | async) as item" class="p-grid">
   <div class="p-col-12 p-md-12 p-lg-8 p-lg-offset-2">
-    <p-panel header="Product Name">
+    <p-panel [header]="item.name">
       <div class="card">
         <p-divider></p-divider>
         <form novalidate [formGroup]="detailsForm">
@@ -12,14 +12,14 @@
             <div class="p-field p-grid">
               <label for="color" class="p-col-3 p-lg-2">Price</label>
               <div class="p-col-9">
-                <h2 class="p-text-bold">{{'20' | currency }}</h2>
+                <h2 class="p-text-bold">{{ item.price | currency }}</h2>
               </div>
             </div>
             <p-divider></p-divider>
             <div class="p-field p-grid">
               <label for="color" class="p-col-3 p-lg-2">Color</label>
               <div class="p-col-9 p-md-4">
-                <p-dropdown [filter]="true" [itemSize]="5" [options]="color" [virtualScroll]="true"
+                <p-dropdown [filter]="true" [itemSize]="5" [options]="item.variants | color" [virtualScroll]="true"
                   formControlName="color" inputId="color" optionLabel="name" optionValue="value" placeholder="-Select-"
                   scrollHeight="100px" styleClass="p-inputtext-sm">
                 </p-dropdown>
@@ -28,18 +28,20 @@
             <div class="p-field p-grid">
               <label for="size" class="p-col-3 p-lg-2">Size</label>
               <div class="p-col-9 p-md-4">
-                <p-dropdown [filter]="true" [itemSize]="5" [options]="size" [virtualScroll]="true"
-                  formControlName="size" inputId="size" optionLabel="name" optionValue="value" placeholder="-Select-"
-                  scrollHeight="100px" styleClass="p-inputtext-sm"></p-dropdown>
+                <p-dropdown [filter]="true" [itemSize]="5" [options]="item.variants | size:this.detailsForm.value.color"
+                  [virtualScroll]="true" formControlName="size" inputId="size" optionLabel="name" optionValue="value"
+                  placeholder="-Select-" scrollHeight="100px" styleClass="p-inputtext-sm"></p-dropdown>
               </div>
             </div>
             <div class="p-field p-grid">
               <label for="quantity" class="p-col-3 p-lg-2">Quantity</label>
               <div class="p-col-9 p-md-4">
-                <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
-                  decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
-                  incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
-                  buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+                <p-inputNumber mode="decimal" [step]="1" [min]="1"
+                  [max]="item.variants | quantity:this.detailsForm.value.color"
+                  decrementButtonClass="p-button-plain p-button-text" decrementButtonIcon="pi pi-minus"
+                  incrementButtonClass="p-button-plain p-button-text" incrementButtonIcon="pi pi-plus"
+                  inputId="quantity" spinnerMode="horizontal" [showButtons]="true" buttonLayout="horizontal"
+                  formControlName="quantity" inputStyleClass="p-inputtext-sm">
                 </p-inputNumber>
               </div>
             </div>
@@ -54,4 +56,4 @@
       </div>
     </p-panel>
   </div>
-</div>
+</ng-container>

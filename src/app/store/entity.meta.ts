@@ -1,7 +1,8 @@
 import { EntityMetadataMap } from '@ngrx/data';
 
 const entity_metadata: EntityMetadataMap = {
-  account: {}
+  account: {},
+  product: {}
 };
 
 const plural_names = {};

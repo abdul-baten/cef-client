@@ -32,6 +32,7 @@
     "dayjs": "^1.9.7",
     "joi": "^17.3.0",
     "jssha": "^3.2.0",
+    "memo-decorator": "^2.0.1",
     "primeflex": "^2.0.0",
     "primeicons": "^4.1.0",
     "primeng": "^11.1.0-rc.1",
