@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { ProductResolver } from './resolvers';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -16,7 +17,9 @@ const routes: Routes = [
   },
   {
     loadChildren: () => import('./routes/details/details.module').then((module) => module.DetailsModule),
-    path: 'details/:id'
+    path: 'details/:id',
+    resolve: { product: ProductResolver },
+    runGuardsAndResolvers: 'always'
   },
   {
     loadChildren: () => import('./routes/checkout/checkout.module').then((module) => module.CheckoutModule),

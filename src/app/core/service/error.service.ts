@@ -1,5 +1,4 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { IError } from 'src/app/models/error.model';
 import { Injectable } from '@angular/core';
 import { NotificationService } from './notification.service';
 
@@ -14,13 +13,7 @@ export class ErrorService {
   }
 
   public handleServerError(error: HttpErrorResponse): void {
-    console.error(error);
-
-    this.serverError(error.error);
-  }
-
-  private serverError(error: IError): void {
-    const { message } = error;
+    const { message } = error.error;
 
     this.notificationService.showError(message);
   }

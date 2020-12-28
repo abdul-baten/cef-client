@@ -38,7 +38,7 @@ export class DetailsFacade {
   }
 
   public getProductById(id: number): Observable<IProduct> {
-    return this.productService.getProductById(id);
+    return this.productService.getProductFromState(id);
   }
 
   public navigate(id: number): void {
