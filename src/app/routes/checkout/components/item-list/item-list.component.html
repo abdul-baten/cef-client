@@ -1,8 +1,12 @@
 <p-panel styleClass="p-mb-3">
   <p-header>
-    <div class="p-d-flex p-jc-between">
+    <div class="p-d-flex p-jc-between p-ai-center">
       <h3>{{product.name}}</h3>
-      <h2 class="p-text-bold">{{product.price | currency }}</h2>
+      <div class="p-d-flex p-jc-between p-ai-center">
+        <h2 class="p-text-bold p-mx-3">{{product.price | currency }}</h2>
+        <button pButton icon="pi pi-times" pTooltip="Remove" tooltipPosition="bottom"
+          class="p-button-rounded p-button-danger" (click)="remove(product.id)"></button>
+      </div>
     </div>
   </p-header>
   <p-divider></p-divider>
@@ -13,8 +17,8 @@
         <div class="p-col-8">
           <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
             decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
-            incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
-            buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+            incrementButtonIcon="pi pi-plus" inputId="color" spinnerMode="horizontal" [showButtons]="true"
+            buttonLayout="horizontal" formControlName="color" inputStyleClass="p-inputtext-sm">
           </p-inputNumber>
         </div>
       </div>
@@ -23,8 +27,8 @@
         <div class="p-col-8">
           <p-inputNumber mode="decimal" [step]="1" [min]="1" decrementButtonClass="p-button-plain p-button-text"
             decrementButtonIcon="pi pi-minus" incrementButtonClass="p-button-plain p-button-text"
-            incrementButtonIcon="pi pi-plus" inputId="quantity" spinnerMode="horizontal" [showButtons]="true"
-            buttonLayout="horizontal" formControlName="quantity" inputStyleClass="p-inputtext-sm">
+            incrementButtonIcon="pi pi-plus" inputId="size" spinnerMode="horizontal" [showButtons]="true"
+            buttonLayout="horizontal" formControlName="size" inputStyleClass="p-inputtext-sm">
           </p-inputNumber>
         </div>
       </div>
@@ -39,5 +43,6 @@
         </div>
       </div>
     </div>
+
   </form>
 </p-panel>

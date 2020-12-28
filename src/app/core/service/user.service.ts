@@ -2,6 +2,7 @@ import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } f
 import {
   first,
   mergeAll,
+  switchMap,
   take,
   tap
 } from 'rxjs/operators';
@@ -26,12 +27,21 @@ export class UserService extends EntityCollectionServiceBase<IAccount> {
     this.upsertOneInCache(user);
   }
 
-  public addProduct(id: string, product: string): Observable<Partial<IAccount>> {
-    return this.httpService.patch('add', {
+  public addProduct(product: string): Observable<Partial<IAccount>> {
+    return this.getUserFromState().pipe(switchMap(({ id }: IAccount) => this.httpService.patch('add', {
       id,
       product
     }).pipe(tap((account) => {
-      this.upsertOneInCache(account, { isOptimistic: true });
-    }));
+      this.updateOneInCache(account);
+    }))));
+  }
+
+  public removeProduct(product: string): Observable<Partial<IAccount>> {
+    return this.getUserFromState().pipe(switchMap(({ id }: IAccount) => this.httpService.patch('remove', {
+      id,
+      product
+    }).pipe(tap((account) => {
+      this.updateOneInCache(account, { isOptimistic: true });
+    }))));
   }
 }

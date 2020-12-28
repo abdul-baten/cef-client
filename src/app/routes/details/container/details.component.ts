@@ -48,7 +48,7 @@ export class DetailsComponent implements OnDestroy {
   }
 
   public addCart(): void {
-    this.facade.addCart(this.productId);
+    this.facade.addCart(this.productId).unsubscribe();
   }
 
   @HostListener('window:beforeunload')

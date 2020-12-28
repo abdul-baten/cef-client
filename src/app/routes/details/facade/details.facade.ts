@@ -23,20 +23,20 @@ export class DetailsFacade {
     return this.subscriptions$;
   }
 
-  public addCart(product: string): void {
-    this.subscriptions$.add(this.userService.entities$.pipe(tap((accounts: IAccount[]) => {
+  public addCart(product: string): Subscription {
+    return this.userService.entities$.pipe(tap((accounts: IAccount[]) => {
       const account = Boolean(accounts.length);
 
       if (account) {
-        this.add(accounts[0].id, product);
+        this.add(product);
       } else {
         this.openConfirm();
       }
-    })).subscribe(noop));
+    })).subscribe(noop);
   }
 
-  private add(id: string, product: string): void {
-    this.userService.addProduct(id, product).pipe(tap(() => {
+  private add(product: string): void {
+    this.userService.addProduct(product).pipe(tap(() => {
       this.router.navigate(['checkout']);
     }), first()).
       subscribe(noop);

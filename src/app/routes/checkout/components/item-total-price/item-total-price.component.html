@@ -1,7 +1,7 @@
 <p-panel>
   <div class="p-d-flex p-ai-center p-jc-between">
-    <h6>Items(0)</h6>
-    <h4 class="p-text-bold">{{'20' | currency }}</h4>
+    <h6>Items</h6>
+    <h4 class="p-text-bold">{{ cart | async }}</h4>
   </div>
   <p-divider></p-divider>
   <div class="p-d-flex p-ai-center p-jc-between">

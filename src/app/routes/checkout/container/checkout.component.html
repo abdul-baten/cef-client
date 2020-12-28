@@ -4,11 +4,15 @@
 
 <div class="p-grid">
   <div class="p-col-12 p-md-12 p-lg-8">
-    <div *ngIf="products | async">
+    <ng-container *ngIf="products | async; else noProductFound">
       <div *ngFor="let product of products | async">
         <app-item-list [product]="product"></app-item-list>
       </div>
-    </div>
+    </ng-container>
+
+    <ng-template #noProductFound>
+      <app-empty></app-empty>
+    </ng-template>
   </div>
   <div class="p-col-12 p-md-12 p-lg-4">
     <app-item-total-price></app-item-total-price>

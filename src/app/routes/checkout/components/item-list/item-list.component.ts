@@ -5,8 +5,10 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
+import { CheckoutFacade } from '../../facade/checkout.facade';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/models';
+import { noop } from 'rxjs';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -19,25 +21,29 @@ export class ItemListComponent implements OnChanges {
   public detailsForm: FormGroup;
   public formClicked = false;
 
-  constructor(private readonly formBuilder: FormBuilder) {
+  constructor(private readonly facade: CheckoutFacade, private readonly formBuilder: FormBuilder) {
     this.detailsForm = this.buildDetailsForm();
+
+    this.detailsForm.valueChanges.subscribe((value) => {
+      const { color, size, quantity } = value;
+
+      console.error(Number(this.product.price) * color * size * quantity);
+    });
   }
 
   private buildDetailsForm(): FormGroup {
     return this.formBuilder.group({
-      color: ['', Validators.required],
+      color: [1, Validators.required],
       quantity: [1, Validators.required],
-      size: ['', Validators.required]
+      size: [1, Validators.required]
     });
-  }
-
-  public addCart(): void {
-    const { color, quantity, size } = this.detailsForm.value;
-
-    console.error(color, quantity, size);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.product = changes.product.currentValue;
+  }
+
+  remove(id: string): void {
+    this.facade.remove(id).subscribe(noop);
   }
 }

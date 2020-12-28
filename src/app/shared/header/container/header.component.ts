@@ -13,8 +13,8 @@ export class HeaderComponent {
   public cart: Observable<number>;
 
   constructor(private readonly facade: HeaderFacade) {
-    this.isLoggedIn = this.facade.getUserFromState().pipe(map((account) => Boolean(account.email)));
-    this.cart = this.facade.getUserFromState().pipe(map((account) => account.products?.length ?? 0));
+    this.isLoggedIn = this.facade.getUserFromState().pipe(map((accounts) => Boolean(accounts[0]?.email)));
+    this.cart = this.facade.getUserFromState().pipe(map((accounts) => accounts[0]?.products?.length ?? 0));
   }
 
   navigate(route: string): void {

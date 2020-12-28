@@ -3,7 +3,6 @@ import { IAccount } from 'src/app/models';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { shareReplay } from 'rxjs/operators';
 import { UserService } from 'src/app/core/service/user.service';
 
 @Injectable()
@@ -19,8 +18,8 @@ export class HeaderFacade {
     this.router.navigate([route]);
   }
 
-  public getUserFromState(): Observable<Partial<IAccount>> {
-    return this.userService.getUserFromState().pipe(shareReplay());
+  public getUserFromState(): Observable<IAccount[]> {
+    return this.userService.entities$;
   }
 
   public logout(): Observable<Record<string, boolean>> {
