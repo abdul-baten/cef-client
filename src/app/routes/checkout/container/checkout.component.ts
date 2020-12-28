@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
-import { IProduct } from 'src/app/models';
 import { CheckoutFacade } from '../facade/checkout.facade';
+import { Component } from '@angular/core';
+import { IProduct } from 'src/app/models';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
