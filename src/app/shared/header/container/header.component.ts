@@ -12,11 +12,7 @@ export class HeaderComponent {
   public isLoggedIn: Observable<boolean> = of(false);
 
   constructor(private readonly facade: HeaderFacade) {
-    this.isLoggedIn = this.facade.getUserFromState().pipe(map((account) => {
-      console.error(account);
-
-      return Boolean(account.email);
-    }));
+    this.isLoggedIn = this.facade.getUserFromState().pipe(map((account) => Boolean(account.email)));
   }
 
   navigate(route: string): void {
