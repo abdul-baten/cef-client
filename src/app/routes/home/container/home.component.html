@@ -2,14 +2,10 @@
   <h2>Products</h2>
 </p-divider>
 
-<ng-template [ngIf]="productItems | async" [ngIfElse]="noProductFound">
+<ng-template [ngIf]="productItems | async">
   <div class="p-grid">
     <div *ngFor="let productItem of productItems | async" class="p-col-12 p-md-6 p-lg-4">
       <app-product-list [productItem]="productItem" (clicked)="navigate($event)"></app-product-list>
     </div>
   </div>
-</ng-template>
-
-<ng-template #noProductFound>
-  <app-empty></app-empty>
 </ng-template>

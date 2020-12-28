@@ -6,3 +6,11 @@
 
 <p-toast hideTransformOptions="translateY(100%)" [showTransitionOptions]="'100ms ease-out'" hideTransitionOptions="0ms">
 </p-toast>
+
+
+<p-confirmDialog key="signinConfirm" [closable]="true" #signinConfirm header="Sign in">
+  <p-footer>
+    <button type="button" pButton label="Sign in" class="p-button-sm p-button-success"
+      (click)="signinConfirm.accept()"></button>
+  </p-footer>
+</p-confirmDialog>

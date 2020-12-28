@@ -4,7 +4,8 @@
     "projects/**/*",
     "node_modules",
     "**/*.d.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*.md"
   ],
   "overrides": [
     {

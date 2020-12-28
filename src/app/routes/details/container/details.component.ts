@@ -1,9 +1,9 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { DetailsFacade } from '../facade/details.facade';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/models';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -11,10 +11,11 @@ import { switchMap } from 'rxjs/operators';
   styleUrls: ['./details.component.scss'],
   templateUrl: './details.component.html'
 })
-export class DetailsComponent {
-  public product: Observable<IProduct>;
+export class DetailsComponent implements OnDestroy {
+  private subscription$ = new Subscription();
   public detailsForm: FormGroup;
   public formClicked = false;
+  public product: Observable<IProduct>;
 
   constructor(private activatedRoute: ActivatedRoute, private readonly facade: DetailsFacade, private formBuilder: FormBuilder) {
     this.product = this.activatedRoute.paramMap.pipe(switchMap((param: ParamMap) => {
@@ -38,5 +39,14 @@ export class DetailsComponent {
     const { color, quantity, size } = this.detailsForm.value;
 
     console.error(color, quantity, size);
+
+    this.facade.addCart();
+  }
+
+  @HostListener('window:beforeeunload')
+  ngOnDestroy(): void {
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
   }
 }
