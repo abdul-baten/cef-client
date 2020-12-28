@@ -18,17 +18,20 @@ export class UserService extends EntityCollectionServiceBase<IAccount> {
     super('account', serviceElementsFactory);
   }
 
-  public getUser(): Observable<IAccount> {
-    return this.httpService.get<IAccount>('user').pipe(tap((user: IAccount) => {
-      this.upsertOneInCache(user);
-    }));
-  }
-
   public getUserFromState(): Observable<IAccount> {
     return this.entities$.pipe(mergeAll(), take(1), first());
   }
 
   public addUserToState(user: IAccount): void {
     this.upsertOneInCache(user);
+  }
+
+  public addProduct(id: string, product: string): Observable<Partial<IAccount>> {
+    return this.httpService.patch('add', {
+      id,
+      product
+    }).pipe(tap((account) => {
+      this.upsertOneInCache(account, { isOptimistic: true });
+    }));
   }
 }

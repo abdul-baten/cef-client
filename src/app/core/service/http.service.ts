@@ -20,12 +20,12 @@ export class HttpService {
       pipe(shareReplay(1));
   }
 
-  public post<T>(uri: string, post_info: unknown): Observable<T> {
-    return this.httpClient.post<T>(base_url + uri, post_info).pipe(shareReplay(1));
+  public post<T>(uri: string, info: unknown): Observable<T> {
+    return this.httpClient.post<T>(base_url + uri, info).pipe(shareReplay(1));
   }
 
-  public patch<T>(uri: string, post_info: T): Observable<T> {
-    return this.httpClient.patch<T>(base_url + uri, post_info).pipe(shareReplay(1));
+  public patch<T>(uri: string, info: T): Observable<T> {
+    return this.httpClient.patch<T>(base_url + uri, info).pipe(shareReplay(1));
   }
 
   public delete<T>(uri: string): Observable<T> {

@@ -1,5 +1,7 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IProduct } from 'src/app/models';
+import { CheckoutFacade } from '../facade/checkout.facade';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +9,9 @@ import { Component } from '@angular/core';
   templateUrl: './checkout.component.html'
 })
 export class CheckoutComponent {
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
-      console.error(param.get('id'));
-    });
+  public products: Observable<IProduct[]>;
+
+  constructor(private readonly facade: CheckoutFacade) {
+    this.products = this.facade.getProducts();
   }
 }

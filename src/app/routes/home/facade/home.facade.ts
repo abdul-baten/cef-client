@@ -12,7 +12,7 @@ export class HomeFacade {
     return this.productService.getProducts();
   }
 
-  public navigate(id: number): void {
+  public navigate(id: string): void {
     this.router.navigate(['details', id]);
   }
 }

@@ -4,7 +4,13 @@
 
 <ng-container *ngIf="product | async as item; else noProductFound" class="p-grid">
   <div class="p-col-12 p-md-12 p-lg-8 p-lg-offset-2">
-    <p-panel [header]="item.name">
+    <p-panel>
+      <p-header>
+        <div class="p-d-flex p-jc-between p-ai-center">
+          <h3>{{item.name}}</h3>
+          <h6 *ngIf="!item.available"> *Item not available. </h6>
+        </div>
+      </p-header>
       <div class="card">
         <p-divider></p-divider>
         <form novalidate [formGroup]="detailsForm">
@@ -47,8 +53,8 @@
             </div>
             <div class="p-field p-grid p-mt-6 p-mb-0">
               <div class="p-col-12">
-                <button (click)="addCart()" [disabled]="detailsForm.invalid || formClicked" class="p-button-lg"
-                  label="Add to Cart" pButton></button>
+                <button (click)="addCart()" [disabled]="detailsForm.invalid || formClicked || !item.available"
+                  class="p-button-lg" label="Add to Cart" pButton></button>
               </div>
             </div>
           </div>

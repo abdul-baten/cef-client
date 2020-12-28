@@ -51,8 +51,8 @@ export class SigninComponent {
    */
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      email: ['', CommonValidator.validateControl('email', this.emailValidationRule)],
-      password: ['', CommonValidator.validateControl('password', this.passwordValidationRule)]
+      email: ['baten@yopmail.com', CommonValidator.validateControl('email', this.emailValidationRule)],
+      password: ['baten@CAT2020', CommonValidator.validateControl('password', this.passwordValidationRule)]
     });
   }
 

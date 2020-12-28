@@ -4,7 +4,7 @@ import { DetailsFacade } from '../facade/details.facade';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IProduct } from 'src/app/models';
 import { Observable, Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-details',
@@ -12,19 +12,31 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './details.component.html'
 })
 export class DetailsComponent implements OnDestroy {
+  private productId= '';
   private subscription$ = new Subscription();
   public detailsForm: FormGroup;
   public formClicked = false;
   public product: Observable<IProduct>;
 
   constructor(private activatedRoute: ActivatedRoute, private readonly facade: DetailsFacade, private formBuilder: FormBuilder) {
-    this.product = this.activatedRoute.paramMap.pipe(switchMap((param: ParamMap) => {
-      const id = param.get('id');
+    this.detailsForm = this.buildDetailsForm();
 
-      return this.facade.getProductById(Number(id) as number);
+    this.product = this.activatedRoute.paramMap.pipe(switchMap((param: ParamMap) => {
+      const id = param.get('id') as string;
+
+      this.productId = id;
+
+      return this.facade.getProductById(id);
+    }), tap((product) => {
+      if (!product.available) {
+        this.detailsForm.disable();
+      }
     }));
 
-    this.detailsForm = this.buildDetailsForm();
+    this.subscription$.add(this.detailsForm.controls.color.valueChanges.subscribe(() => {
+      this.detailsForm.controls.size.reset();
+      this.detailsForm.controls.quantity.setValue(1);
+    }));
   }
 
   private buildDetailsForm(): FormGroup {
@@ -36,17 +48,17 @@ export class DetailsComponent implements OnDestroy {
   }
 
   public addCart(): void {
-    const { color, quantity, size } = this.detailsForm.value;
-
-    console.error(color, quantity, size);
-
-    this.facade.addCart();
+    this.facade.addCart(this.productId);
   }
 
-  @HostListener('window:beforeeunload')
+  @HostListener('window:beforeunload')
   ngOnDestroy(): void {
     if (this.subscription$) {
       this.subscription$.unsubscribe();
+    }
+
+    if (this.facade.getSubs()) {
+      this.facade.getSubs().unsubscribe();
     }
   }
 }

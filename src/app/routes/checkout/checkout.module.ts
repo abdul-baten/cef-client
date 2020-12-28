@@ -1,5 +1,6 @@
 import { ButtonModule } from 'primeng/button';
 import { CheckoutComponent } from './container/checkout.component';
+import { CheckoutFacade } from './facade/checkout.facade';
 import { CommonModule } from '@angular/common';
 import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
@@ -30,6 +31,7 @@ const routes: Routes = [
     PanelModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ]
+  ],
+  providers: [CheckoutFacade]
 })
 export class CheckoutModule { }

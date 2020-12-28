@@ -23,8 +23,8 @@ export class ProductResolver implements Resolve<IProduct> {
 
   public resolve(route: ActivatedRouteSnapshot): Observable<IProduct> {
     const id = route.paramMap.get('id') as string;
-    const product_from_state$ = this.productService.getProductFromState(Number(id));
-    const product_from_server$ = this.productService.getProductFromServer(Number(id)).pipe(map((product: IProduct) => product));
+    const product_from_state$ = this.productService.getProductFromState(id);
+    const product_from_server$ = this.productService.getProductFromServer(id).pipe(map((product: IProduct) => product));
 
     return product_from_state$.pipe(
       switchMap((product: IProduct) => {

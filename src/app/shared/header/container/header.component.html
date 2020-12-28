@@ -3,7 +3,8 @@
     <img src="/assets/images/logo/logo_base.webp" alt="logo" (click)="navigate('')">
 
     <div class="b-h-full p-d-flex p-ai-center p-jc-between">
-      <i class="pi pi-bell p-mr-4 p-text-secondary" style="font-size: 1.5rem;" pBadge value="0"></i>
+      <i class="pi pi-bell p-mr-4 p-text-secondary" style="font-size: 1.5rem;" pBadge
+        [value]="$any((cart | async))"></i>
 
       <ng-template [ngIf]="!(isLoggedIn | async)" [ngIfElse]="loggedOut">
         <button pButton type="button" label="Sign in" class="p-button-text p-button-plain p-mx-2"
@@ -12,6 +13,7 @@
       </ng-template>
 
       <ng-template #loggedOut>
+        <button pButton type="button" label="Checkout" (click)="navigate('checkout')"></button>
         <button pButton type="button" label="Sign out" class="p-ml-2" (click)="logout()"></button>
       </ng-template>
     </div>

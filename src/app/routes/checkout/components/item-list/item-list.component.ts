@@ -1,7 +1,12 @@
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IDropdown } from 'src/app/models';
+import { IProduct } from 'src/app/models';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -9,36 +14,13 @@ import { IDropdown } from 'src/app/models';
   styleUrls: ['./item-list.component.scss'],
   templateUrl: './item-list.component.html'
 })
-export class ItemListComponent {
-  public color: IDropdown[];
+export class ItemListComponent implements OnChanges {
+  @Input() product!: IProduct;
   public detailsForm: FormGroup;
   public formClicked = false;
-  public size: IDropdown[];
 
-  constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) {
-    this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
-      console.error(param.get('id'));
-    });
-
+  constructor(private readonly formBuilder: FormBuilder) {
     this.detailsForm = this.buildDetailsForm();
-
-    this.color = [
-      {
-        name: 'White',
-        value: 'white'
-      }
-    ];
-
-    this.size = [
-      {
-        name: 'Medium',
-        value: 'medium'
-      },
-      {
-        name: 'Large',
-        value: 'large'
-      }
-    ];
   }
 
   private buildDetailsForm(): FormGroup {
@@ -53,5 +35,9 @@ export class ItemListComponent {
     const { color, quantity, size } = this.detailsForm.value;
 
     console.error(color, quantity, size);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.product = changes.product.currentValue;
   }
 }

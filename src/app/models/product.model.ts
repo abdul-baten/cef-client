@@ -6,7 +6,7 @@ export interface IVariant {
 
 export interface IProduct {
   available: boolean;
-  id: number;
+  id: string;
   name: string;
   price: string;
   variants: IVariant[];

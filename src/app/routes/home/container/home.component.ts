@@ -15,7 +15,7 @@ export class HomeComponent {
     this.productItems = this.facade.getProducts();
   }
 
-  public navigate(id: number): void {
+  public navigate(id: string): void {
     this.facade.navigate(id);
   }
 }

@@ -19,12 +19,12 @@ export class ProductService extends EntityCollectionServiceBase<IProduct | IProd
     }));
   }
 
-  public getProductFromState(id: number): Observable<IProduct> {
+  public getProductFromState(id: string): Observable<IProduct> {
     // eslint-disable-next-line no-extra-parens
     return this.entities$.pipe(map((products) => products.find((product) => (product as IProduct).id === id))) as unknown as Observable<IProduct>;
   }
 
-  public getProductFromServer(id: number): Observable<IProduct> {
+  public getProductFromServer(id: string): Observable<IProduct> {
     return this.httpService.get<IProduct>(`product/${id}`).pipe(tap((product: IProduct) => {
       this.upsertOneInCache(product);
     }));

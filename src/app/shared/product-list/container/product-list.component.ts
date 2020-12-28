@@ -17,13 +17,13 @@ import { IProduct } from 'src/app/models';
 })
 export class ProductListComponent implements OnChanges {
   @Input() productItem: Partial<IProduct> = {};
-  @Output() clicked = new EventEmitter<number>();
+  @Output() clicked = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges): void {
     this.productItem = changes.productItem.currentValue;
   }
 
-  public navigate(id: number): void {
+  public navigate(id: string): void {
     this.clicked.emit(id);
   }
 }
