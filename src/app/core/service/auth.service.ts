@@ -38,4 +38,8 @@ export class AuthService {
       password
     });
   }
+
+  public logout(): Observable<Record<string, boolean>> {
+    return this.httpService.get<Record<string, boolean>>('logout');
+  }
 }

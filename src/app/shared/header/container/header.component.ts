@@ -18,4 +18,10 @@ export class HeaderComponent {
   navigate(route: string): void {
     this.facade.navigate(route);
   }
+
+  public logout(): void {
+    this.facade.logout().subscribe(() => {
+      this.facade.reload('/');
+    });
+  }
 }
